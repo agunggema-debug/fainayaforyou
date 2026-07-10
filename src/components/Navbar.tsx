@@ -25,6 +25,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -41,6 +50,7 @@ export default function Navbar() {
           {/* Logo */}
           <a
             href="#home"
+            onClick={(e) => handleNavClick(e, "#home")}
             className="font-logo text-3xl md:text-4xl text-dark-brown leading-none"
           >
             Fainaya
@@ -53,6 +63,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-sm font-medium text-secondary hover:text-primary transition-colors duration-200 tracking-wide"
               >
                 {link.label}
@@ -60,6 +71,7 @@ export default function Navbar() {
             ))}
             <a
               href="#contact"
+              onClick={(e) => handleNavClick(e, "#contact")}
               className="bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg"
             >
               Pesan Sekarang
@@ -68,7 +80,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setIsOpen((prev) => !prev)}
             className="md:hidden text-dark-brown p-2"
             aria-label="Toggle menu"
           >
@@ -81,18 +93,18 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-white/95 backdrop-blur-md border-t border-cream"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="md:hidden bg-white/95 backdrop-blur-md border-t border-cream overflow-hidden"
           >
             <div className="px-4 py-6 space-y-4">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="block text-sm font-medium text-secondary hover:text-primary transition-colors duration-200 py-2"
                 >
                   {link.label}
@@ -100,7 +112,7 @@ export default function Navbar() {
               ))}
               <a
                 href="#contact"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => handleNavClick(e, "#contact")}
                 className="block text-center bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-full text-sm font-medium transition-all duration-200"
               >
                 Pesan Sekarang
