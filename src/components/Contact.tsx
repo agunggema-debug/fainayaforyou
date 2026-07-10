@@ -19,7 +19,7 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Lokasi",
-    value: "Jakarta, Indonesia",
+    value: "Ciparay, West Java, Indonesia",
     href: "#",
   },
 ];

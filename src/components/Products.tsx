@@ -118,9 +118,15 @@ export default function Products() {
                 <h3 className="font-serif text-lg font-bold text-dark-brown mb-1">
                   {product.name}
                 </h3>
-                <p className="text-primary font-semibold text-sm mb-2">
+                <a
+                  href={product.waLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-primary font-semibold text-sm mb-2 hover:text-green-600 transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   {product.price}
-                </p>
+                </a>
                 <p className="text-secondary text-sm leading-relaxed line-clamp-2">
                   {product.description}
                 </p>

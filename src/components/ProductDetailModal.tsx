@@ -85,10 +85,6 @@ export default function ProductDetailModal({
                     {product.name}
                   </h3>
 
-                  <p className="text-primary text-xl font-semibold mb-4">
-                    {product.price}
-                  </p>
-
                   <p className="text-secondary text-sm leading-relaxed mb-6">
                     {product.description}
                   </p>
@@ -116,7 +112,9 @@ export default function ProductDetailModal({
 
                 {/* Action button */}
                 <a
-                  href="#contact"
+                  href={product.waLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={onClose}
                   className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white px-6 py-3.5 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-xl hover:shadow-primary/25 w-full"
                 >

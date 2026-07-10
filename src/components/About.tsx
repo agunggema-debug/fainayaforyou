@@ -47,11 +47,12 @@ export default function About() {
             <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-rose/30">
               <div className="relative w-full h-full">
                 <Image
-                  src="/images/products/tas-selempang.jpg"
+                  src="/images/products/hero2.jpg"
                   alt="Proses pembuatan rajutan tangan"
                   fill
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="object-cover hover:scale-105 transition-transform duration-700"
+                  loading="eager"
                 />
               </div>
             </div>
