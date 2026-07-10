@@ -29,7 +29,7 @@ export const products: Product[] = [
     description:
       "Tas selempang mini yang lucu dan praktis. Cocok untuk acara santai maupun formal.",
     image: "/images/products/tas-selempang.jpg",
-    colors: ["#e8c4b8", "#d4a373", "#6b5b4f"],
+    colors: ["#26075c", "#d4a373", "#6b5b4f"],
     waLink: "https://wa.me/6283124090800?text=Halo%20Fainaya%20For%20You%2C%20saya%20tertarik%20dengan%20produk%20Tas%20Selempang%20Mini",
   },
   {

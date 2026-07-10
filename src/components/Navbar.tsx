@@ -41,7 +41,7 @@ export default function Navbar() {
           {/* Logo */}
           <a
             href="#home"
-            className="font-serif text-2xl md:text-3xl font-bold text-dark-brown"
+            className="font-logo text-3xl md:text-4xl text-dark-brown leading-none"
           >
             Fainaya
             <span className="text-primary"> For You</span>
