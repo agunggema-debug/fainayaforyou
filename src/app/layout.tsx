@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Great_Vibes } from "next/font/google";
+import { Inter, Playfair_Display, Great_Vibes, Quicksand } from "next/font/google";
+import ChatBot from "@/components/ChatBot";
 import "./globals.css";
 
 const inter = Inter({
@@ -18,6 +19,12 @@ const greatVibes = Great_Vibes({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-great-vibes",
+  display: "swap",
+});
+
+const quicksand = Quicksand({
+  subsets: ["latin"],
+  variable: "--font-quicksand",
   display: "swap",
 });
 
@@ -52,9 +59,12 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${inter.variable} ${playfairDisplay.variable} ${greatVibes.variable} h-full antialiased`}
+      className={`${inter.variable} ${playfairDisplay.variable} ${greatVibes.variable} ${quicksand.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <ChatBot />
+      </body>
     </html>
   );
 }
