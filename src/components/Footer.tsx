@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Globe, Camera, MessageCircle } from "lucide-react";
+import { Heart, Globe, Camera, MessageCircle, Eye, Users } from "lucide-react";
+import { useVisitorCounter } from "@/utils/visitorCounter";
 
 const footerLinks = {
   perusahaan: {
@@ -33,6 +34,8 @@ const footerLinks = {
 };
 
 export default function Footer() {
+  const { totalVisitors, onlineVisitors, loading } = useVisitorCounter();
+
   return (
     <footer className="bg-dark-brown text-cream/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -116,9 +119,29 @@ export default function Footer() {
               &copy; {new Date().getFullYear()} Fainaya For You. All rights
               reserved.
             </p>
-            <p className="text-sm text-cream/60 flex items-center gap-1">
-              Made with <Heart className="w-3.5 h-3.5 text-rose" /> in Indonesia
-            </p>
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
+              {!loading && (
+                <>
+                  <p className="text-sm text-cream/60 flex items-center gap-1.5">
+                    <Eye className="w-3.5 h-3.5" />
+                    <span>
+                      <strong className="text-cream/80">{totalVisitors.toLocaleString()}</strong>{" "}
+                      total pengunjung
+                    </span>
+                  </p>
+                  <p className="text-sm text-cream/60 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-green-400 inline-block animate-pulse" />
+                    <span>
+                      <strong className="text-cream/80">{onlineVisitors}</strong>{" "}
+                      online sekarang
+                    </span>
+                  </p>
+                </>
+              )}
+              <p className="text-sm text-cream/60 flex items-center gap-1">
+                Made with <Heart className="w-3.5 h-3.5 text-rose" /> in Indonesia
+              </p>
+            </div>
           </div>
         </div>
       </div>
