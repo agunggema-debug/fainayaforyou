@@ -6,7 +6,22 @@ const TOTAL_KEY = "fainaya-total-visitors";
 const SESSION_KEY = "fainaya-session-id";
 
 function generateSessionId(): string {
-  return Math.random().toString(36).substring(2, 15);
+  // Use crypto.randomUUID() if available (modern browsers), otherwise fallback
+  if (typeof crypto !== "undefined" && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  // Fallback to a less secure but better than Math.random approach
+  const arr = new Uint8Array(16);
+  crypto.getRandomValues(arr);
+  return Array.from(arr, (byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+function randomInt(min: number, max: number): number {
+  // Use crypto.getRandomValues for cryptographically secure random numbers
+  const range = max - min + 1;
+  const bytes = new Uint32Array(1);
+  crypto.getRandomValues(bytes);
+  return min + (bytes[0] % range);
 }
 
 function getOrCreateSessionId(): string {
@@ -37,7 +52,7 @@ export function useVisitorCounter() {
         } else {
           // Fallback to localStorage
           const stored = localStorage.getItem(TOTAL_KEY);
-          const current = stored ? parseInt(stored, 10) : 0;
+          const current = stored ? Number.parseInt(stored, 10) : 0;
           const newCount = current + 1;
           localStorage.setItem(TOTAL_KEY, newCount.toString());
           setTotalVisitors(newCount);
@@ -45,7 +60,7 @@ export function useVisitorCounter() {
       } catch {
         // Fallback to localStorage when offline
         const stored = localStorage.getItem(TOTAL_KEY);
-        const current = stored ? parseInt(stored, 10) : 0;
+        const current = stored ? Number.parseInt(stored, 10) : 0;
         const newCount = current + 1;
         localStorage.setItem(TOTAL_KEY, newCount.toString());
         setTotalVisitors(newCount);
@@ -53,7 +68,7 @@ export function useVisitorCounter() {
 
       // Simulate online visitors (3-15 range)
       getOrCreateSessionId();
-      const simulatedOnline = Math.floor(Math.random() * 13) + 3;
+      const simulatedOnline = randomInt(3, 15);
       setOnlineVisitors(simulatedOnline);
       setLoading(false);
     }
@@ -62,7 +77,7 @@ export function useVisitorCounter() {
 
     // Refresh online visitors every 30 seconds
     const interval = setInterval(() => {
-      const simulatedOnline = Math.floor(Math.random() * 13) + 3;
+      const simulatedOnline = randomInt(3, 15);
       setOnlineVisitors(simulatedOnline);
     }, 30000);
 

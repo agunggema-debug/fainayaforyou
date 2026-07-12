@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Globe, Camera, MessageCircle, Eye, Users } from "lucide-react";
+import { Heart, Globe, Camera, MessageCircle, Eye } from "lucide-react";
 import { useVisitorCounter } from "@/utils/visitorCounter";
 
 const footerLinks = {
@@ -52,24 +52,29 @@ export default function Footer() {
               href="#home"
               className="font-serif text-2xl font-bold text-white mb-4 block"
             >
-              Fainaya
-              <span className="text-primary"> For You</span>
+              Fainaya{' '}
+              <span className="text-primary">For You</span>
             </a>
             <p className="text-sm leading-relaxed mb-6">
               Menghadirkan produk rajutan tangan berkualitas tinggi dengan
               desain eksklusif dan penuh cinta.
             </p>
             <div className="flex gap-3">
-              {[Camera, Globe, MessageCircle].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors duration-200"
-                  aria-label="Social media"
-                >
-                  <Icon className="w-4 h-4" />
-                </a>
-              ))}
+              {footerLinks.sosial.links.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors duration-200"
+                    aria-label={link.label}
+                  >
+                    {Icon && <Icon className="w-4 h-4" />}
+                  </a>
+                );
+              })}
             </div>
           </motion.div>
 
