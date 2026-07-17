@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Heart, Globe, Camera, MessageCircle, Eye } from "lucide-react";
 import { useVisitorCounter } from "@/utils/visitorCounter";
 
+
 const footerLinks = {
   perusahaan: {
     title: "Perusahaan",
@@ -50,7 +51,7 @@ export default function Footer() {
           >
             <a
               href="#home"
-              className="font-serif text-2xl font-bold text-white mb-4 block"
+            className="font-logo text-2xl md:text-3xl text-white mb-4 block"
             >
               Fainaya{' '}
               <span className="text-primary">For You</span>
@@ -87,7 +88,7 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 * (idx + 1) }}
             >
-              <h3 className="font-serif text-white font-bold text-lg mb-4">
+              <h3 className="font-logo text-white text-lg mb-4">
                 {section.title}
               </h3>
               <ul className="space-y-3">

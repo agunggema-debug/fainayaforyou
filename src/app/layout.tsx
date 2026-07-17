@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Great_Vibes, Quicksand } from "next/font/google";
 import ChatBot from "@/components/ChatBot";
+import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 
 const inter = Inter({
@@ -42,6 +43,9 @@ export const metadata: Metadata = {
     "Fainaya",
   ],
   authors: [{ name: "Fainaya For You" }],
+  icons: {
+    icon: "/images/products/logo.png",
+  },
   openGraph: {
     title: "Fainaya For You - Kreasi Rajutan Tangan",
     description:
@@ -63,6 +67,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         {children}
+        <ScrollToTop />
         <ChatBot />
       </body>
     </html>
