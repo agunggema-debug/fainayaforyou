@@ -29,7 +29,7 @@ export default function ScrollToTop() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-24 right-6 z-40 w-12 h-12 rounded-full bg-white/90 backdrop-blur-md border border-primary/30 text-primary shadow-lg hover:shadow-xl hover:bg-primary hover:text-white flex items-center justify-center transition-all duration-300 group"
+          className="fixed bottom-6 right-24 z-40 w-12 h-12 rounded-full bg-white/90 backdrop-blur-md border border-primary/30 text-primary shadow-lg hover:shadow-xl hover:bg-primary hover:text-white flex items-center justify-center transition-all duration-300 group"
           aria-label="Scroll to top"
         >
           <motion.div
